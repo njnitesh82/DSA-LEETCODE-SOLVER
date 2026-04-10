@@ -13,18 +13,19 @@ public:
     ListNode* reverseList(ListNode* head) {
         // make a previous node
         ListNode* prev = nullptr;
-        ListNode* curr = head; // copy head in curr
-        // now curr is having value and the next address
 
-        while(curr != nullptr){
-            //swaping
-            ListNode* nextTemp = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = nextTemp;
-
+        if (head == nullptr || head->next == nullptr){
+            return head;
         }
-        return prev;
         
+        //current node is head
+        ListNode* newNode = reverseList(head->next);
+        //____________________________________________
+        ListNode* headNext = head->next;
+        headNext->next = head;
+        head->next = nullptr;
+
+        
+    return newNode;      
     }
 };
